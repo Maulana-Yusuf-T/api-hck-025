@@ -48,3 +48,13 @@ def search_data(id:int): # harus bentuknya integer
 #     data = pd.concat(data, new_row, ignore_index=True)
 
 #     return {'message':data.to_dict(orient='records'}
+
+# menambahkan data
+@app.post("/data/add")
+def add_data(new_data:dict):
+    global data
+    
+    new_row = pd.DataFrame([new_data])
+    data = pd.concat([data, new_row], ignore_index=True)
+
+    return {'message':data.to_dict(orient='records')}
